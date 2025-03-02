@@ -4,5 +4,5 @@
 int thisIsGlobal = 10;  // delete before submission
 
 // TODO: Function declarations go below
-void example(int*); // delete before submission
+char** split(char *str, char *delim);
 
