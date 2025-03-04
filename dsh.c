@@ -65,3 +65,34 @@ char** split(char *str, char *delim)
     array[i] = NULL; // Set final element of array to NULL
     return array;
 }
+
+char** trimInput (char *str){
+    char **array = split(str, " ");
+    return array;
+}
+
+// Returns 1 for exit, 2 for pwd, 3 for cd, and 0 if command is not built in
+int isBuiltIn(char *str) {
+    if (strcmp(str, "exit") == 0) {
+        return 1;
+    }
+    else if (strcmp(str, "pwd") == 0){
+        return 2;
+    }
+    else if (strcmp(str, "cd") == 0){
+        return 3;
+    }
+    else {
+        return 0;
+    }
+}
+
+void cd(char *dir) {
+    if (dir == NULL){ //no directory specified, use HOME
+        const char *home_dir = getenv("HOME");
+        chdir(home_dir);
+    }
+    else if (chdir(dir)){
+        printf("%s: no such file or directory\n", dir);
+    }
+}
